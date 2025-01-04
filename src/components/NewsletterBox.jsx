@@ -6,13 +6,13 @@ const NewsletterBox = () => {
   };
 
   return (
-    <div className="text-center my-10">
+    <div className="text-center sm:my-[100px] my-[50px]">
       <p className="text-2xl font-medium text-gray-800">
         Subscribe now and get 20% off
       </p>
       <p className="text-gray-400 mt-3">
         Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        industry
       </p>
 
       <form
