@@ -4,7 +4,7 @@ import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
-  const { products, search, showSearch  } = useContext(ShopContext);
+  const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
@@ -12,6 +12,7 @@ const Collection = () => {
   const [sortType, setSortType] = useState("relevant");
 
   //
+
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
       setCategory((prev) => prev.filter((item) => item !== e.target.value));
@@ -32,12 +33,11 @@ const Collection = () => {
   const applyFilter = () => {
     let productsCopy = products.slice();
 
-     if (showSearch && search) {
-      productsCopy = productsCopy.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
-
-      
-     }
-
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
+      );
+    }
 
     if (category.length > 0) {
       productsCopy = productsCopy.filter((item) =>
@@ -60,10 +60,12 @@ const Collection = () => {
     switch (sortType) {
       case "low-high":
         setFilterProducts(filterCopy.sort((a, b) => a.price - b.price));
+
         break;
 
       case "high-low":
         setFilterProducts(filterCopy.sort((a, b) => b.price - a.price));
+
         break;
 
       default:
@@ -71,9 +73,10 @@ const Collection = () => {
         break;
     }
   };
+
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory,search,showSearch]);
+  }, [category, subCategory, search, showSearch]);
 
   useEffect(() => {
     sortProduct();
